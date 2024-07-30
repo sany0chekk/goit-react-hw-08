@@ -13,7 +13,7 @@ const SearchBox = () => {
         type="text"
         value={value}
         onChange={(event) => dispatch(changeFilter(event.target.value))}
-        className="w-full bg-neutral-600 border border-neutral-500 rounded-md h-8 outline-none transition-colors focus:border-neutral-400 px-2 text-sm"
+        className="w-full bg-zinc-400 dark:bg-neutral-600 border border-neutral-500 rounded-md h-8 outline-none transition-colors focus:border-neutral-400 px-2 text-sm"
       />
     </div>
   );

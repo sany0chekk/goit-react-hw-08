@@ -1,7 +1,7 @@
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../redux/contactsOps";
+import { deleteContact } from "../redux/contacts/operations";
 
 const Contact = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const Contact = ({ contact: { id, name, number } }) => {
   };
 
   return (
-    <li className="p-4 bg-neutral-600 rounded-md flex flex-col gap-6 md:flex-row justify-between md:items-center">
+    <li className="p-4 bg-zinc-300 shadow-lg dark:bg-neutral-600 rounded-md flex flex-col gap-6 md:flex-row justify-between md:items-center">
       <div className="flex flex-col gap-3">
         <p className="text-base md:text-xl">{name}</p>
         <p className="flex items-center gap-2 text-sm">
@@ -19,7 +19,7 @@ const Contact = ({ contact: { id, name, number } }) => {
       </div>
       <button
         onClick={() => handleDelete(id)}
-        className="bg-teal-700 p-2 transition-colors hover:bg-teal-600 rounded-md w-full md:w-auto flex justify-center"
+        className="bg-teal-700 p-2 transition-colors text-zinc-300 dark:text-white hover:bg-teal-600 rounded-md w-full md:w-auto flex justify-center"
       >
         <MdDeleteForever size="25" />
       </button>

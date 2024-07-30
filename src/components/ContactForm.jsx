@@ -2,7 +2,7 @@ import { useId } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContact } from "../redux/contactsOps";
+import { addContact } from "../redux/contacts/operations";
 
 const ContactForm = () => {
   const nameFieldId = useId();
@@ -51,7 +51,7 @@ const ContactForm = () => {
             type="text"
             name="name"
             id={nameFieldId}
-            className="w-full bg-neutral-600 border border-neutral-500 rounded-md h-8 outline-none transition-colors focus:border-neutral-400 px-2 text-sm"
+            className="w-full bg-zinc-400 dark:bg-neutral-600 border border-neutral-500 rounded-md h-8 outline-none transition-colors focus:border-neutral-400 px-2 text-sm"
           />
           <ErrorMessage
             name="name"
@@ -67,7 +67,7 @@ const ContactForm = () => {
             type="text"
             name="number"
             id={numberFieldId}
-            className="w-full bg-neutral-600 border border-neutral-500 rounded-md h-8 outline-none transition-colors focus:border-neutral-400 px-2 text-sm"
+            className="w-full bg-zinc-400 dark:bg-neutral-600 border border-neutral-500 rounded-md h-8 outline-none transition-colors focus:border-neutral-400 px-2 text-sm"
           />
           <ErrorMessage
             name="number"
@@ -77,7 +77,7 @@ const ContactForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-teal-700 transition-colors hover:bg-teal-600 p-2 rounded-md"
+          className="w-full text-zinc-300 dark:text-white bg-teal-700 transition-colors hover:bg-teal-600 p-2 rounded-md"
         >
           Add contact
         </button>
