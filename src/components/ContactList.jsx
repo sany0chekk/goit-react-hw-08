@@ -4,7 +4,7 @@ import {
   selectError,
   selectFilteredContacts,
   selectLoading,
-} from "../redux/contactsSlice";
+} from "../redux/contacts/selectors";
 import { FallingLines } from "react-loader-spinner";
 
 const ContactList = () => {
