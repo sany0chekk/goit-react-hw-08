@@ -2,9 +2,18 @@ import { Field, Formik, Form } from "formik";
 import { FaRegUser } from "react-icons/fa";
 import { GrSecure } from "react-icons/gr";
 import { MdOutlineMail } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { register } from "../redux/auth/operations";
 
 const RegistrationPage = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    dispatch(register(values));
+    actions.resetForm();
+  };
+
   return (
     <div className="max-w-[400px] mx-auto bg-zinc-300 dark:bg-neutral-700 rounded-md shadow-md p-4">
       <h2 className="text-center font-bold text-xl mb-10">Registration</h2>
@@ -14,6 +23,7 @@ const RegistrationPage = () => {
           email: "",
           password: "",
         }}
+        onSubmit={handleSubmit}
       >
         <Form>
           <div className="flex flex-col mb-6">

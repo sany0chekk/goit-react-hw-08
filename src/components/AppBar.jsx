@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 
 import { selectLoggedIn } from "../redux/auth/selectors";
 import { CiMenuFries } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 import Container from "./Container";
 import AuthNav from "./AuthNav";
 import Navigation from "./Navigation";
 import ThemeChanger from "./ThemeChanger";
 import MobileMenu from "./MobileMenu";
+import UserMenu from "./UserMenu";
 
 const AppBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,16 +30,16 @@ const AppBar = () => {
     <>
       <header>
         <Container css="flex items-center justify-between gap-4">
-          <p className="font-bold text-lg">
+          <Link to="/" className="font-bold text-lg">
             <span className="text-teal-500">E</span>-Contacts
-          </p>
+          </Link>
           {isLoggedIn && (
             <div className="hidden md:block">
               <Navigation />
             </div>
           )}
           <div className="hidden md:flex items-center gap-6">
-            <AuthNav />
+            {isLoggedIn ? <UserMenu /> : <AuthNav />}
             <ThemeChanger />
           </div>
           <div className="block md:hidden">
