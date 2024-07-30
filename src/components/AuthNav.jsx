@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const AuthNav = ({ handleCloseMenu }) => {
   return (
-    <ul className="flex items-center gap-8 max-md:bg-neutral-700 max-md:p-4 max-md:rounded-md">
+    <ul className="flex items-center gap-8 max-md:bg-zinc-400 max-md:dark:bg-neutral-700 max-md:shadow-md max-md:p-4 max-md:rounded-md">
       <li>
         <Link
           to="/login"

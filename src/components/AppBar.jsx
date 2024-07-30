@@ -1,13 +1,18 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import { selectLoggedIn } from "../redux/auth/selectors";
+import { CiMenuFries } from "react-icons/ci";
+
 import Container from "./Container";
 import AuthNav from "./AuthNav";
 import Navigation from "./Navigation";
 import ThemeChanger from "./ThemeChanger";
-import { CiMenuFries } from "react-icons/ci";
 import MobileMenu from "./MobileMenu";
-import { useState } from "react";
 
 const AppBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isLoggedIn = useSelector(selectLoggedIn);
 
   const handleOpenMenu = () => {
     setIsMenuOpen(true);
@@ -26,9 +31,11 @@ const AppBar = () => {
           <p className="font-bold text-lg">
             <span className="text-teal-500">E</span>-Contacts
           </p>
-          <div className="hidden md:block">
-            <Navigation />
-          </div>
+          {isLoggedIn && (
+            <div className="hidden md:block">
+              <Navigation />
+            </div>
+          )}
           <div className="hidden md:flex items-center gap-6">
             <AuthNav />
             <ThemeChanger />
