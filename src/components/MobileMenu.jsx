@@ -4,9 +4,11 @@ import AuthNav from "./AuthNav";
 import ThemeChanger from "./ThemeChanger";
 import { useSelector } from "react-redux";
 import { selectLoggedIn } from "../redux/auth/selectors";
+import UserMenu from "./UserMenu";
 
 const MobileMenu = ({ isOpen, handleClose }) => {
   const isLoggedIn = useSelector(selectLoggedIn);
+
   return (
     <div
       className={`transition transform ${
@@ -29,7 +31,7 @@ const MobileMenu = ({ isOpen, handleClose }) => {
         </p>
       )}
       <div className="mt-auto">
-        <AuthNav handleCloseMenu={handleClose} />
+        {isLoggedIn ? <UserMenu /> : <AuthNav handleCloseMenu={handleClose} />}
       </div>
     </div>
   );

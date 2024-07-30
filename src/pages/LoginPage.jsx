@@ -1,30 +1,39 @@
 import { Formik, Form, Field } from "formik";
 import { FaRegUser } from "react-icons/fa";
 import { GrSecure } from "react-icons/gr";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { logIn } from "../redux/auth/operations";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    dispatch(logIn(values));
+    actions.resetForm();
+  };
   return (
     <div className="max-w-[400px] mx-auto bg-zinc-300 dark:bg-neutral-700 rounded-md shadow-md p-4">
       <h2 className="text-center font-bold text-xl mb-10">Login</h2>
       <Formik
         initialValues={{
-          name: "",
+          email: "",
           password: "",
         }}
+        onSubmit={handleSubmit}
       >
         <Form>
           <div className="flex flex-col mb-6">
-            <label htmlFor="name" className="font-semibold text-sm">
-              Username
+            <label htmlFor="email" className="font-semibold text-sm">
+              Email
             </label>
             <div className="transition-opacity border-b border-zinc-500 border-opacity-50 flex items-center gap-2 p-2 group focus-within:border-opacity-100">
               <FaRegUser className="size-4 transition-opacity opacity-50 group-focus-within:opacity-100" />
               <Field
-                name="name"
-                id="name"
-                type="text"
-                placeholder="Type your username"
+                name="email"
+                id="email"
+                type="email"
+                placeholder="Type your email"
                 className="bg-transparent outline-none font-light text-sm"
               />
             </div>

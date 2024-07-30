@@ -75,7 +75,7 @@ const RegistrationPage = () => {
             type="submit"
             className="p-2 w-full rounded-md text-zinc-300 dark:text-white transition-colors bg-teal-700 hover:bg-teal-600"
           >
-            Login
+            Register
           </button>
         </Form>
       </Formik>
