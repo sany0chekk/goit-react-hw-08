@@ -13,15 +13,17 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col items-start md:flex-row gap-4">
-      <div className="md:max-w-[300px] w-full p-4 bg-zinc-300 dark:bg-neutral-700 rounded-md">
-        <ContactForm />
-        <SearchBox />
+    <>
+      <div className="flex flex-col items-start md:flex-row gap-4">
+        <div className="md:max-w-[300px] w-full p-4 bg-zinc-300 dark:bg-neutral-700 rounded-md">
+          <ContactForm />
+          <SearchBox />
+        </div>
+        <div className="relative p-4 bg-zinc-300 dark:bg-neutral-700 rounded-md flex-grow w-full h-full">
+          <ContactList />
+        </div>
       </div>
-      <div className="relative p-4 bg-zinc-300 dark:bg-neutral-700 rounded-md flex-grow w-full h-full">
-        <ContactList />
-      </div>
-    </div>
+    </>
   );
 };
 

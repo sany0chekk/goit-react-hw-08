@@ -9,11 +9,6 @@ const ContactForm = () => {
   const numberFieldId = useId();
   const dispatch = useDispatch();
 
-  const initialValues = {
-    name: "",
-    number: "",
-  };
-
   const validationSchema = Yup.object().shape({
     name: Yup.string()
       .required("Required!")
@@ -38,7 +33,10 @@ const ContactForm = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{
+        name: "",
+        number: "",
+      }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
