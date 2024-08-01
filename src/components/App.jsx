@@ -34,12 +34,10 @@ const App = () => {
     }
   }, [errorMessage]);
 
-  return isRefreshing ? (
-    <PageLoader />
-  ) : (
+  return (
     <>
+      {(isRefreshing || isLoading) && <PageLoader />}
       <Toaster position="top-center" reverseOrder={false} />
-      {isLoading && <PageLoader />}
       <Suspense>
         <Routes>
           <Route path="/" element={<Layout />}>
