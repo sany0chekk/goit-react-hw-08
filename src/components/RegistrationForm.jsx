@@ -1,10 +1,12 @@
-import { Field, Formik, Form } from "formik";
+import { Field, Formik, Form, ErrorMessage } from "formik";
 import { FaRegUser } from "react-icons/fa";
 import { GrSecure } from "react-icons/gr";
 import { MdOutlineMail } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { register } from "../redux/auth/operations";
+
+import * as Yup from "yup";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -13,6 +15,24 @@ const RegistrationForm = () => {
     dispatch(register(values));
     actions.resetForm();
   };
+
+  const registrationValidationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required("Required!")
+      .min(3, "Too short!")
+      .max(50, "Name must be at most 50 characters!")
+      .test(
+        "trim",
+        "Name cannot be only spaces!",
+        (value) => value.trim() !== ""
+      ),
+    email: Yup.string().email("Invalid email!").required("Required!"),
+    password: Yup.string()
+      .required("Required!")
+      .min(8, "Password must be at least 8 characters!")
+      .max(50, "Password must be at most 50 characters!"),
+  });
+
   return (
     <div className="max-w-[400px] mx-auto bg-zinc-300 dark:bg-neutral-700 rounded-md shadow-md p-4">
       <h2 className="text-center font-bold text-xl mb-10">Registration</h2>
@@ -23,6 +43,7 @@ const RegistrationForm = () => {
           password: "",
         }}
         onSubmit={handleSubmit}
+        validationSchema={registrationValidationSchema}
       >
         <Form>
           <div className="flex flex-col mb-6">
@@ -39,6 +60,11 @@ const RegistrationForm = () => {
                 className="bg-transparent outline-none font-light text-sm"
               />
             </div>
+            <ErrorMessage
+              name="name"
+              component="span"
+              className="text-red-600 mt-1"
+            />
           </div>
           <div className="flex flex-col mb-6">
             <label htmlFor="email" className="font-semibold text-sm">
@@ -54,6 +80,11 @@ const RegistrationForm = () => {
                 className="bg-transparent outline-none font-light text-sm"
               />
             </div>
+            <ErrorMessage
+              name="email"
+              component="span"
+              className="text-red-600 mt-1"
+            />
           </div>
           <div className="flex flex-col mb-10">
             <label htmlFor="password" className="font-semibold text-sm">
@@ -69,6 +100,11 @@ const RegistrationForm = () => {
                 className="bg-transparent outline-none font-light text-sm"
               />
             </div>
+            <ErrorMessage
+              name="password"
+              component="span"
+              className="text-red-600 mt-1"
+            />
           </div>
           <button
             type="submit"

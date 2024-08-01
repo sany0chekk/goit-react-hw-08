@@ -2,7 +2,7 @@ import { Triangle } from "react-loader-spinner";
 
 const PageLoader = () => {
   return (
-    <div className="fixed w-full h-full top-0 left-0 backdrop-blur-sm bg-white dark:bg-neutral-700 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed w-full h-full z-50 top-0 left-0 backdrop-blur-sm bg-white bg-opacity-50 dark:bg-neutral-700 dark:bg-opacity-50 flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
         <Triangle
           visible={true}

@@ -1,9 +1,11 @@
-import { Field, Formik, Form } from "formik";
+import { Field, Formik, Form, ErrorMessage } from "formik";
 import { FaRegUser } from "react-icons/fa";
 import { GrSecure } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logIn } from "../redux/auth/operations";
+
+import * as Yup from "yup";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -12,6 +14,14 @@ const LoginForm = () => {
     dispatch(logIn(values));
     actions.resetForm();
   };
+
+  const loginValidationSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email!").required("Required!"),
+    password: Yup.string()
+      .required("Required!")
+      .min(8, "Password must be at least 8 characters!")
+      .max(50, "Password must be at most 50 characters!"),
+  });
 
   return (
     <div className="max-w-[400px] mx-auto bg-zinc-300 dark:bg-neutral-700 rounded-md shadow-md p-4">
@@ -22,6 +32,7 @@ const LoginForm = () => {
           password: "",
         }}
         onSubmit={handleSubmit}
+        validationSchema={loginValidationSchema}
       >
         <Form>
           <div className="flex flex-col mb-6">
@@ -38,6 +49,11 @@ const LoginForm = () => {
                 className="bg-transparent outline-none font-light text-sm"
               />
             </div>
+            <ErrorMessage
+              name="email"
+              component="span"
+              className="text-red-600 mt-1"
+            />
           </div>
           <div className="flex flex-col mb-10">
             <label htmlFor="password" className="font-semibold text-sm">
@@ -53,6 +69,11 @@ const LoginForm = () => {
                 className="bg-transparent outline-none font-light text-sm"
               />
             </div>
+            <ErrorMessage
+              name="password"
+              component="span"
+              className="text-red-600 mt-1"
+            />
           </div>
           <button
             type="submit"

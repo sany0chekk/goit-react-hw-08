@@ -9,7 +9,9 @@ const EditContactForm = ({ handleEditClose, id, name, number }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
-    dispatch(editContact({ id, ...values }));
+    if (values.name !== name || values.number !== number) {
+      dispatch(editContact({ id, ...values }));
+    }
     handleEditClose();
   };
 

@@ -18,12 +18,14 @@ const AppBar = () => {
 
   const handleOpenMenu = () => {
     setIsMenuOpen(true);
+    document.body.style.overflow = "hidden";
   };
 
   const isMobile = () => window.innerWidth >= 768;
   const handleCloseMenu = () => {
     if (isMobile()) return;
     setIsMenuOpen(false);
+    document.body.style.overflow = "";
   };
 
   return (
