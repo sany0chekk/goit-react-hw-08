@@ -18,7 +18,7 @@ const AuthNav = ({ handleCloseMenu }) => {
           className="text-2xl md:text-sm text-zinc-300 dark:text-white font-medium p-2 bg-teal-700 rounded-md transition-colors hover:bg-teal-600"
           onClick={handleCloseMenu}
         >
-          Sign In
+          Sign Up
         </Link>
       </li>
     </ul>
